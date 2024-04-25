@@ -13,10 +13,10 @@ function banner (){
     clear
     echo
     # figlet -ctk -f banner "INFO  EXTRACTOR" | lolcat  
+# if !command -v lolcat
     echo -e "\e[1;32m" 
     figlet -ctk -f banner "INFO EXTRACTOR"
     echo -e "\e[0m"
-    # if !command -v lolcat
 }
 
 function menu (){
@@ -48,7 +48,7 @@ function main(){
     echo -e "\e[0m"  
 
     case $choice in
-		0)
+	0)
             publicIp=$(curl -s ifconfig.co)
 			echo -e '\e[32m' "Your Public IP Address are: \e[0m"$publicIp 
             echo 
