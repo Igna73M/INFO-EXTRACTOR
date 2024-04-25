@@ -13,10 +13,10 @@ function banner (){
     clear
     echo
     # figlet -ctk -f banner "INFO  EXTRACTOR" | lolcat  
+# if !command -v lolcat
     echo -e "\e[1;32m" 
     figlet -ctk -f banner "INFO EXTRACTOR"
     echo -e "\e[0m"
-    # if !command -v lolcat
 }
 
 function menu (){
@@ -48,7 +48,8 @@ function main(){
     echo -e "\e[0m"  
 
     case $choice in
-		0)
+
+	    0)
             publicIp=$(curl -s ifconfig.co)
 			echo -e '\e[32m' "Your Public IP Address are: \e[0m"$publicIp 
             echo 
@@ -65,6 +66,7 @@ function main(){
             echo 
             iscontinue ;;
         3)
+            # ps aux | awk '{print $3 " "  $1 " "  $2 " " $NF}' | sort -nr | awk '{print " USER: " $2  " PID: " $3 " %CPU: " $1 " COMMAND: " $4}' | head -n 5
             cpuPerc=$(top -bn1 | grep PID -A 5 | awk '{print "\\n\n" $1 "\\t\t\t\t" $2 "\\t\t" $9 "\\t\t" $NF }')
 			echo -e '\e[32m' "Top 5 Processes: \e[0m"$cpuPerc 
             echo 
@@ -75,8 +77,8 @@ function main(){
             echo 
             iscontinue ;;
         5)
-            actService=$(service --status-all | grep + | awk '{print $NF "\\t\t"}')
-			echo -e '\e[32m' "Active System Services:\n \e[0m"$actService 
+			echo -e '\e[32m' "Active System Services:\n \e[0m"
+            service --status-all | grep '+' 
             echo 
             iscontinue ;;
         6)
