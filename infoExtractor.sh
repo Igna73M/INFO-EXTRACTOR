@@ -54,7 +54,8 @@ function main(){
             echo 
             iscontinue ;;
         1)
-            privateIp=$(hostname -I)
+            # privateIp=$(hostname -I)
+            privateIp=$(ifconfig |grep -v inet6 | grep inet | awk '{print $2 }')
 			echo -e '\e[32m' "Private IP Address: \e[0m"$privateIp 
             echo 
             iscontinue ;;
